@@ -55,11 +55,11 @@ namespace API
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1"));
             }
 
-            app.UseHttpsRedirection();
+            app.UseHttpsRedirection(); //removed this, caused cors policy to deny client access
 
             app.UseRouting();
 
-            //must be after routing and before authorization
+            //must be after routing and before authorization            
             app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
             //must be after usecors and before authorization
             app.UseAuthentication();
